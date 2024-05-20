@@ -1,0 +1,167 @@
+alerts
+email 
+stock reports
+market trends real time stock prcies
+trading (buy and sell)
+------------------------------------------------
+
+Reqirement (Stock brokerage System)
+----------------------------
+1- OnlineStockBrokerSystem - UI
+2- User can buy and sell stocks
+3- System send auto generated emails and stock reports
+4- System will display real time stock prices
+5- User's portfolio related to stocks prices, profit loss 
+6- Performance  charts
+7- user's security alert
+7- Transaction details
+8- stock quotes display 
+
+Actor -
+----------------
+System- Interface, 
+performanceChart, TradingStrategy , quarterlyReport(), YearlyReport(), 
+
+
+Company - register brokers, notifyEvent event
+
+BrokerSystem {
+Broker broker, 
+List<CompanyStock> stocks, 
+List<User> users
+InitTransaction()
+CancelTransaction()
+}
+
+
+Broker {
+Id
+Name
+List<Company> company
+List<User> users
+
+AddUser()
+Block/UnblockUser()
+
+}
+
+Company {
+id
+name
+SharePrice
+Share Status
+BrokerId
+}
+
+Users{
+Id 
+Name
+email
+SignIn()
+SignUp()
+
+}
+
+Wallet {
+Id 
+Deposit()
+Withdraw()
+
+}
+
+Order{
+BuyStock()
+SellStock()
+cacelOrder()
+}
+
+StockQuoteWatchListView {
+previous stock price
+curretstockprice
+bid and ask prices
+profit
+loss
+dateof Purchase
+DateOfsell
+
+AddWatchList()
+RemoveWatchList()
+}
+
+StockOrderConditions {
+MarketOrder
+LimitOrder
+StopLossOrder
+StopLimitOrder
+}
+
+Notifications
+{
+email
+alert
+
+SendReport()
+OrderThreshHold()
+}
+
+Actors
+-Admin (for block/unblock members, createAccount(), CancelMembership, SearchStockInventry())
+-Member -(CRUD, PlaceOrder, cancelOrder, CreateUpdateatchList, AddstockToWatchList, ViewStockPosition(), DepositWithdraw money)
+-System - fetchStockUpdate(), SendOrderNotification, SendDepositWithDrawNotifications
+
+Flow chart
+1) Users Activity To Buy and sell
+
+Sign In User
+|
+AddMoneyToWallet()
+|
+searchStock()
+|
+SetOrderLimits()
+|
+BuyStock() - ValidateOrderLimit - Yes 
+				- No - exit
+|
+SellStock() - ValidateStock() - Yes
+				- No - exit
+|
+
+2) Transaction
+Buy  - Yes - AddToWallet - TransferMoney (check, wire, electronic transfer)
+Sell - Yes - SubtractFromWallet  (check, wire, electronic transfer)
+
+
+3) System Activity
+
+Notify - when new order status
+       
+Email   - Quarterly report
+	- Yearly report
+
+Alert   - Reaches Order ThresHold
+
+Fetch StockExchage Data
+Send Deposit/withdra status change notification
+
+4) StockQuote
+DisplayPerstockWindow()
+ChangeWindowView()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
